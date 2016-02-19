@@ -31,9 +31,10 @@ bootlint(opts, config : object) : number
 
 Configuration object:
 
-- `src` (string[]). Files to check.
+- `src` (string or string[]). Files to check. To lint a directory, this must end with `/`.
 - `disable` (string or string[]). Disable the [linter IDs](https://github.com/twbs/bootlint/wiki).
 - `output` (boolean). Display the `bootlint` output: `true`, yep; `false`, nope. Default: `true`.
+- `ignore` (string or string[]). Exclude the files.
 
 The task returns `0` if all the lint checks have passed; otherwise, `!0`.
 
@@ -43,5 +44,10 @@ Examples:
 bootlint("Check Bootstrap", {
   src: ["app/index.html", "app/about.html)"],
   disable: "W002"
+});
+
+bootlint("Check Bootstrap", {
+  src: "app/",
+  ignore: ["app/styles/", "app/scripts/", "app/fonts/"]
 });
 ```
